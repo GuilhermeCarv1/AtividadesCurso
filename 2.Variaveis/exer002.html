@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" id="button">ALERTA</button>
+
+    <Script>
+        function click() {
+            var futuro = ['pets', 'geo', 'car', 'job'];
+            futuro[0] = "cachorro"
+            futuro[1] = "irlanda"            
+            futuro[2] = "supra" 
+            futuro[3] = "programador"
+            var mensagem =  ('No futuro, ira ter um ' + futuro[0] + ' e ira morar na ' + futuro[1] + ' enquanto conduz seu ' + futuro[2] + ' a caminho do seu trabalho de ' + futuro[3] + '.');
+
+            alert(mensagem)
+                }
+        var button = document.getElementById("button");
+        button.addEventListener("click", click);
+    </Script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Soma</title>
+    <style>
+      input[type="number"], input[type="text"], button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: blue;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <label>Primeiro número:</label>
+    <input type="number" id="num1">
+    <label>Segundo número:</label>
+    <input type="number" id="num2">
+    <button onclick="somar()">Soma</button>
+    <label>Resultado:</label>
+    <input type="text" id="resultado" disabled>
+
+    <script>
+      function somar() {
+        var num1 = parseInt(document.getElementById("num1").value);
+        var num2 = parseInt(document.getElementById("num2").value);
+        var resultado = num1 + num2;
+        document.getElementById("resultado").value = resultado;
+        alert("A soma de " + num1 + " e " + num2 + " é igual a " + resultado + ".");
+      }
+    </script>
+  </body>
+</html>
