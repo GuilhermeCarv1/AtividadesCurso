@@ -17,10 +17,21 @@
         var Alu = document.querySelector('#btn1')
         var Del = document.querySelector('#btn2')
         var Tra = document.querySelector('#btn3')
-
-        var filme = [Alugado = 'nao', Último-cliente];
-
-
+        var filme = [];
+        filme = ['sim','Guilherme Carvalho'];
+        
+        Alu.addEventListener("click", () => { 
+        filme[0] = "sim";    
+        console.log("alugado= " + filme[0] )
+        console.log("ultimo cliente = " + filme[1])
+        console.log(filme)
+    });
+        Tra.addEventListener("click", () => { 
+        filme[0] = "não";    
+        console.log("alugado= " + filme[0] )
+        console.log("ultimo cliente = " + filme[1])
+        console.log(filme)
+    });
     </script>
 
 </body>
