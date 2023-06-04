@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<style>.circle {
+    background: rgb(7, 85, 110);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    transition: opacity 0.5s;
+}
+</style>
+<body>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    
+    <script>
+
+        const circle = document.querySelectorAll('.circle');
+        function handleMouseOver(event) {
+            event.target.style.opacity = '0.2';
+        }
+        function handleMouseOut(event) {
+            event.target.style.opacity = '1';
+        }
+
+        circle. forEach(circle => {
+            circle.addEventListener('mouseover', handleMouseOver);
+            circle.addEventListener('mouseout', handleMouseOut);
+        });
+
+    </script>
+</body>
+</html>
