@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Galo</title>
+    <style>
+        body{
+            background-color: rgb(162, 190, 231);
+        }
+
+        .CONTAINER{
+            margin: 50px;
+        }
+        .container{
+            display: flex;
+            
+        }
+        .container div {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(1, 2, 1, 0.137);
+            border: 1px solid black; 
+            margin: 5px;
+        }
+        .container div:hover{
+            background-color: rgba(0, 0, 0, 0.274);
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="CONTAINER">
+        <div>
+            <label for="player1">Jogador 1: </label>
+            <input type="text" id="player1">
+        </div>
+        <div>
+            <label for="player2">Jogador 2: </label>
+            <input type="text" id="player2">
+        </div>
+        <div class="container">
+            <div id="caixa1" onclick="MudarCor(1)"></div>
+            <div id="caixa2" onclick="MudarCor(2)"></div>
+            <div id="caixa3" onclick="MudarCor(3)"></div>            
+        </div>
+        <div class="container">
+            <div id="caixa4" onclick="MudarCor(4)"></div>
+            <div id="caixa5" onclick="MudarCor(5)"></div>
+            <div id="caixa6" onclick="MudarCor(6)"></div>            
+        </div>
+        <div class="container">
+            <div id="caixa7" onclick="MudarCor(7)"></div>
+            <div id="caixa8" onclick="MudarCor(8)"></div>
+            <div id="caixa9" onclick="MudarCor(9)"></div>
+        </div>
+        <button id="iniciarJogo" onclick="IniciarJogo()" disabled>Iniciar Jogo</button>
+        <button onclick="ReiniciarJogo()" disabled>Reiniciar Jogo</button>
+    </div>
+    <script>
+        var jogada = 0;
+        var jogador1 = [];
+        var jogador2 = [];
+        var vitoria = false;
+        var vitoriaComb = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
+
+        var player1Input = document.getElementById("player1");
+        var player2Input = document.getElementById("player2");
+        var iniciarJogoBtn = document.getElementById("iniciarJogo");
+        var reiniciarJogoBtn = document.querySelector("button[type='reset']");
+
+        player1Input.addEventListener("input", validarNomes);
+        player2Input.addEventListener("input", validarNomes);
+
+        function validarNomes() {
+            if (player1Input.value && player2Input.value) {
+                iniciarJogoBtn.disabled = false;
+            } else {
+                iniciarJogoBtn.disabled = true;
+            }
+        }
+
+        function IniciarJogo() {
+            jogada = 0;
+            jogador1 = [];
+            jogador2 = [];
+            vitoria = false;
+            limparCaixas();
+            reiniciarJogoBtn.disabled = false;
+            player1Input.disabled = true;
+            player2Input.disabled = true;
+        }
+
+        function MudarCor(v){
+            var total = jogada/2;
+            if (jogada%2 === 0 ){
+                jogador1.push(v);
+                document.getElementById("caixa"+v).style.background = "green";
+                console.log(player1Input.value + " fez a jogada: " + jogador1);
+                verificarVitoria(jogador1, player1Input.value);
+            } else {
+                jogador2.push(v);
+                document.getElementById("caixa"+v).style.background = "red";
+                console.log(player2Input.value + " fez a jogada: " + jogador2);
+                verificarVitoria(jogador2, player2Input.value);
+            }
+            jogada++;
+        }
+
+        function verificarVitoria(jogador, jogadorNome) {
+            for (let i = 0; i < vitoriaComb.length; i++) {
+                const comb = vitoriaComb[i];
+                if (jogador.includes(comb[0]) && jogador.includes(comb[1]) && jogador.includes(comb[2])) {
+                    alert(jogadorNome + " venceu o jogo!");
+                    vitoria = true;
+                    break;
+                }
+            }
+            if (jogada === 9 && !vitoria) {
+                alert("Empate! O jogo acabou.");
+            }
+        }
+
+        function ReiniciarJogo() {
+            jogada = 0;
+            jogador1 = [];
+            jogador2 = [];
+            vitoria = false;
+            limparCaixas();
+            reiniciarJogoBtn.disabled = true;
+            player1Input.disabled = false;
+            player2Input.disabled = false;
+            player1Input.value = "";
+            player2Input.value = "";
+        }
+
+        function limparCaixas() {
+            var caixas = document.querySelectorAll(".container div");
+            caixas.forEach(function(caixa) {
+                caixa.style.background = "rgba(1, 2, 1, 0.137)";
+            });
+        }
+    </script>
+</body>
+</html>
